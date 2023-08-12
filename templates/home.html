@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="static/styles.css"> <!-- Link to your CSS file -->
+  <title>Home</title>
+</head>
+<body>
+  <header>
+    <h1>Book Library</h1>
+  </header>
 
-    {% for book in books %}
-    <div> <h3>{{ book.title }}</h3>
-    </div>
-    {% endfor %}
+  <main>
+    <section class="search-sort">
+      <form action="/" method="get">
+        <div class="search">
+          <input type="text" name="search" placeholder="Search by keyword">
+          <button type="submit" name="action" value="search">Search</button>
+        </div>
+        <div class="sort">
+          <label for="sort">Sort by:</label>
+          <select name="sort" id="sort">
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+          </select>
+          <button type="submit" name="action" value="sort">Sort</button>
+        </div>
+      </form>
+    </section>
 
-  </body>
+    <section class="book-list">
+      {% if message %}
+      <div class="message">{{ message }}</div>
+      {% endif %}
+      {% for book in books %}
+      <div class="book">
+        <img src="{{ book.cover_url }}" alt="{{ book.title }} Cover">
+        <div class="book-info">
+          <h3>{{ book.title }}</h3>
+          <p>Author: {{ book.author }}</p>
+        </div>
+        <form action="{{ url_for('delete_book', book_id=book.id) }}" method="post">
+          <input type="submit" value="Delete">
+        </form>
+      </div>
+      {% endfor %}
+    </section>
+  </main>
+</body>
 </html>

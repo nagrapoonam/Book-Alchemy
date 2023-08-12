@@ -18,5 +18,12 @@
   <input type="submit" value="Add Author">
   </form>
 
+  {% if success_message %}
+<div class="success-message">
+    <p>{{ success_message }}</p>
+</div>
+{% endif %}
+
+
   </body>
 </html>
