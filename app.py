@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 #Set the database URI for SQLAlchemy, providing file path
 app.config[
-    'SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/User/PycharmProjects/SE107.2/Book-Alchemy/data/library.sqlite3'
+    'SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/library.sqlite3'
 
 #Initialize the SQLAlchemy database (db) with the Flask app (app)
 db.init_app(app)
